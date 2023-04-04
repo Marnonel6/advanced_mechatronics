@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<project>                                  
+  <executable name="dist/default/production/HW2.X.production.elf">                 
+    <memory name="program">                 
+      <units>bytes</units>                 
+      <length>237568</length>                 
+      <used>25104</used>                     
+      <free>212464</free>                     
+    </memory>                              
+    <memory name="data">              
+      <units>bytes</units>                 
+      <length>65536</length>                 
+      <used>848</used>                     
+      <free>64688</free>                     
+    </memory>                              
+  </executable>                            
+</project>                                 
