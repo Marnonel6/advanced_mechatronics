@@ -24,7 +24,7 @@ plt.rcParams['toolbar'] = 'None'
 class Plotter:
     def __init__(self, ax):
         self.ax = ax
-        self.maxt = 250
+        self.maxt = 500
         self.tdata = [0]
         self.ydata = [3.3/2]
         self.line = Line2D(self.tdata, self.ydata)
