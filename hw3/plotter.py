@@ -46,7 +46,6 @@ class Plotter:
         self.line.set_data(self.tdata, self.ydata)
         return self.line,
 
-
 def serial_getter():
     # grab fresh ADC values
     # note sometimes UART drops chars so we try a max of 5 times
@@ -60,6 +59,68 @@ def serial_getter():
                 continue
             break
         yield line
+
+
+# def serial_getter():
+#     # grab fresh ADC values
+#     # note sometimes UART drops chars so we try a max of 5 times
+#     # to get proper data
+#     while True:
+#         for i in range(5):
+#             line = ser.readline()
+#             if line!='':  # check for non-empty string
+#                 try:
+#                     line = float(line)
+#                 except ValueError:
+#                     continue
+#                 break
+#         yield line
+
+# def serial_getter():
+#     # grab fresh ADC values
+#     # note sometimes UART drops chars so we try a max of 5 times
+#     # to get proper data
+#     while True:
+#         for i in range(5):
+#             line = ser.readline()
+#             if line.strip() == b'':
+#                 continue
+#             try:
+#                 line = float(line)
+#             except ValueError:
+#                 continue
+#             break
+#         yield line
+
+# def serial_getter():
+#     # grab fresh ADC values
+#     # note sometimes UART drops chars so we try a max of 5 times
+#     # to get proper data
+#     while True:
+#         for i in range(5):
+#             line = ser.readline().strip() # strip any whitespace
+#             if line:
+#                 try:
+#                     line = float(line)
+#                     break
+#                 except ValueError:
+#                     continue
+#         yield line
+
+# def serial_getter():
+#     # grab fresh ADC values
+#     # note sometimes UART drops chars so we try a max of 5 times
+#     # to get proper data
+#     while True:
+#         for i in range(5):
+#             line = ser.readline()
+#             if line.strip(): # check if line is not empty
+#                 try:
+#                     line = float(line)
+#                 except ValueError:
+#                     continue
+#                 break
+#         yield line
 
 # if len(sys.argv) < 2:
 #     raise Exception("Ruh roh..no port specified!")
