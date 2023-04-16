@@ -11,5 +11,6 @@ The following software is necessary:
 - [MPLAB XC32 C-Compiler (v4.21)](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)
 - [Onshape](https://www.onshape.com/en/)
 - [KiCad](https://www.kicad.org/)
+- [Python3](https://www.python.org/downloads/)
 
 The PIC32 was preprogrammed with a bootloader (from ME333). We will use a program called nu32utility to send the compiled code to the PIC32 using a virtual serial port. To compile nu32utility you will need gcc. gcc is already on OSX and linux, and can be installed on Windows with mingw.
