@@ -7,16 +7,11 @@ void initSPI() {
     // Turn of analog pins
     ANSELA = 0;
     // Make an output pin for CS
-//    TRISBbits.TRISB13 = 0;
-//    LATBbits.LATB13 = 0;
     TRISBbits.TRISB12 = 0;
-//    LATBbits.LATB12 = 0;
     CS = 0; // ChipSelect
     // Set SDO1 - Data Out
-//    RPB5Rbits.RPB5R = 0b0011; // Pin RB5
     RPB13Rbits.RPB13R = 0b0011; // Pin RB13
     // Set SDI1 - Data In
-//    RPB11Rbits.RPB11R = 0b0011; // Pin RB14
     SDI1Rbits.SDI1R = 0b0011; // Pin RB11
 
     // setup SPI1
