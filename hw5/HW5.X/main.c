@@ -74,13 +74,9 @@ unsigned short triangle_traj(double A,double B,double C,double D, int i,int c) {
         dec = A - (slope*(i-i_per_triangle/2));
     }
     
-//    dec = 511;
-//    dec = dec & 
-    
     unsigned short p = 0;
-    p = c << 15; // c = Channel
+    p = c << 15; // c = Channel - Green wire
     p = p | (0b111 << 12);
-//    p = p | dec << 4;
     p = p | dec << 2;
     
     return p;
