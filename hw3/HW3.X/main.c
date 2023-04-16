@@ -20,7 +20,7 @@ int main(void) {
     //        _CP0_SET_COUNT(0);
     //        while(_CP0_GET_COUNT()<24000000/1000) {} // Wait 1ms between points
     //    }
-    
+
 	if (!NU32DIP_USER){ // Thus when the button is pressed send the sine wave
         // Every time you push the USER button, send a single cycle of a 
         // sine wave in 100 data points, with a 0.01 second delay between 

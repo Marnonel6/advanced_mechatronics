@@ -4,4 +4,6 @@
 void initSPI();
 unsigned char spi_io(unsigned char o);
 
+#define CS LATBbits.LATB12
+
 #endif // SPI__H__
