@@ -4,7 +4,7 @@
 - [(hw3) `UART` communication & live Python data plotting](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw3)
 - [(hw4) `PCB design` - KiCad](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw4)
 - [(hw5) `SPI` communication with a DAC](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw5)
-
+- [(hw6) `I2C` communication with a 8-Bit I2C I/O Expander ](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw6)
 
 The following software is necessary:
 - [MPLAB X IDE (v6.05)](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)
