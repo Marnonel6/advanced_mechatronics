@@ -1,4 +1,4 @@
-# `I2C` communication with a [MPU6050](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf) (InvenSense Inc.)
+# `I2C` communication with a IMU [MPU6050](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf) (InvenSense Inc.)
 - Use the PIC32 to read and [configure a MPU6050 IMU](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Register-Map1.pdf).
 
 - Build and add program to PIC32
