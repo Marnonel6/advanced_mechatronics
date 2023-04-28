@@ -1,4 +1,4 @@
-# Advanced Meachatronic projects with the `PIC32MX170F256B` chip:
+# Advanced Meachatronic projects with the [`PIC32MX170F256B`](https://www.microchip.com/en-us/product/PIC32MX170F256B) chip:
 
 - [(hw2) Basic circuit for PIC32MX170F256B `Circuit design`](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw2)
 - [(hw3) `UART` communication & live Python data plotting](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw3)
