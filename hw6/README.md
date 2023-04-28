@@ -5,7 +5,7 @@
 
 https://user-images.githubusercontent.com/60977336/235218669-94e9466a-300b-4bab-80cf-00bab78425b8.mp4
 
-### I2C connections - TOP right chip os the 8-Bit I2C I/O Expander (MCP23008 - Microchip)
+### I2C connections - TOP right chip is the 8-Bit I2C I/O Expander (MCP23008 - Microchip)
 
 ![I2C](https://user-images.githubusercontent.com/60977336/235217703-0b44316a-61d4-4432-9f07-23cd853385c5.jpeg)
 
