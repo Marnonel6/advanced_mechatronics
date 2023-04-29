@@ -26,9 +26,9 @@
 #define SSD1306_DEACTIVATE_SCROLL   0x2E ///< Stop scroll
 
 void ssd1306_setup(void);
-void ssd1306_update(void);
-void ssd1306_clear(void);
-void ssd1306_drawPixel(unsigned char x, unsigned char y, unsigned char color);
+void ssd1306_update(void); // Takes array and update screen
+void ssd1306_clear(void);  //  Switch whole screen off
+void ssd1306_drawPixel(unsigned char x, unsigned char y, unsigned char color); // At this position switch off/on
 
 /// this should be private
 void ssd1306_command(unsigned char c);

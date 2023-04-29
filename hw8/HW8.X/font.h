@@ -1,11 +1,10 @@
 #ifndef FONT_H__
 #define FONT_H__
 
-// make these functions:
-// void drawChar(...);
-// void drawString(...);
+#include <string.h>
 
-// lookup table for all of the ascii characters
+//const char* getChar(int charNum){
+//    // lookup table for all of the ascii characters
 static const char ASCII[96][5] = {
  {0x00, 0x00, 0x00, 0x00, 0x00} // 20  (space)
 ,{0x00, 0x00, 0x5f, 0x00, 0x00} // 21 !
@@ -105,5 +104,55 @@ static const char ASCII[96][5] = {
 ,{0x00, 0x06, 0x09, 0x09, 0x06} // 7f ?
 }; // end char ASCII[96][5]
 
+//    return ASCII[charNum-0x20];
+//}
+
+
+//// make these functions:
+//void drawChar(unsigned char a, unsigned char b, unsigned char charNum){
+//    char *letter = getChar(charNum);
+//    for (int x = 0; x < 5; x++){
+//        for (int y = 0; y < 8; y++){
+//            if ((letter[x] >> y) & 00000001){
+//                ssd1306_drawPixel(x + a,y + b, 1);
+//            }
+//            else{
+//                ssd1306_drawPixel(x + a,y + b, 0);
+//            }
+//        }
+//    }
+//}
+
+// make these functions:
+void drawChar(char letter, char x, char y){
+//    char *letter = getChar(charNum);
+    for (int j = 0; j < 5; j++){
+        char col = ASCII[letter-0x20][j];
+        for (int i = 0; i < 8; i++){
+            ssd1306_drawPixel(x+j, y+i, (col>>i)&0b1); // At this position switch off/on
+//            if ((letter[j] >> i) & 00000001){
+//                ssd1306_drawPixel(x + a,i + b, 1);
+//            }
+//            else{
+//                ssd1306_drawPixel(x + a,i + b, 0);
+//            }
+        }
+    }
+}
+
+//void drawString(unsigned char a, unsigned char b, char* message){
+//    for (int i = 0; i < strlen(message); i ++){
+//        drawChar(5*i + a, 5*b, message[i]);
+//    }
+//}
+
+void drawString(char *message, char x, char y){
+    int k = 0;
+//    for (int i = 0; i < strlen(message); i ++){
+    while(message[k]!=0){
+        drawChar(message[k], x+5*k, y);
+        k++;
+    }
+}
 
 #endif

@@ -6,7 +6,7 @@
 
 unsigned char ssd1306_write = 0b01111000; // i2c address
 unsigned char ssd1306_read = 0b01111001; // i2c address
-unsigned char ssd1306_buffer[512]; // 128x32/8. Every bit is a pixel
+unsigned char ssd1306_buffer[512]; // 128x32/8. Every bit is a pixel -> Organized in colums
 
 void ssd1306_setup() {
     // give a little delay for the ssd1306 to power up
@@ -29,7 +29,7 @@ void ssd1306_setup() {
     ssd1306_command(SSD1306_COMSCANDEC);
     ssd1306_command(SSD1306_SETCOMPINS);
     ssd1306_command(0x02);
-    ssd1306_command(SSD1306_SETCONTRAST);
+    ssd1306_command(SSD1306_SETCONTRAST); // How bright a pixel is -> 0xFF full brightness
     ssd1306_command(0x8F);
     ssd1306_command(SSD1306_SETPRECHARGE);
     ssd1306_command(0xF1);
@@ -40,7 +40,7 @@ void ssd1306_setup() {
     ssd1306_update();
 }
 
-// send a command instruction (not pixel data)
+// send a command instruction (not pixel data) // DO NOT CALL THIS FUNCTION
 void ssd1306_command(unsigned char c) {
     i2c_master_start();
     i2c_master_send(ssd1306_write);
@@ -51,6 +51,7 @@ void ssd1306_command(unsigned char c) {
 
 // update every pixel on the screen
 void ssd1306_update() {
+    // Move curser to [0,0] -> Top left of screen
     ssd1306_command(SSD1306_PAGEADDR);
     ssd1306_command(0);
     ssd1306_command(0xFF);
@@ -70,7 +71,7 @@ void ssd1306_update() {
     i2c_master_stop();
 }
 
-// set a pixel value. Call update() to push to the display)
+// set a pixel value. Call update() to push to the display. -> We use this
 void ssd1306_drawPixel(unsigned char x, unsigned char y, unsigned char color) {
     if ((x < 0) || (x >= 128) || (y < 0) || (y >= 32)) {
         return;
