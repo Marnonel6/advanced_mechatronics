@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=i2c_master_noint.c main.c mpu6050.c nu32dip.c ssd1306.c
+SOURCEFILES_QUOTED_IF_SPACED=i2c_master_noint.c main.c mpu6050.c nu32dip.c ssd1306.c font.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/i2c_master_noint.o ${OBJECTDIR}/main.o ${OBJECTDIR}/mpu6050.o ${OBJECTDIR}/nu32dip.o ${OBJECTDIR}/ssd1306.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/i2c_master_noint.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/mpu6050.o.d ${OBJECTDIR}/nu32dip.o.d ${OBJECTDIR}/ssd1306.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/i2c_master_noint.o ${OBJECTDIR}/main.o ${OBJECTDIR}/mpu6050.o ${OBJECTDIR}/nu32dip.o ${OBJECTDIR}/ssd1306.o ${OBJECTDIR}/font.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/i2c_master_noint.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/mpu6050.o.d ${OBJECTDIR}/nu32dip.o.d ${OBJECTDIR}/ssd1306.o.d ${OBJECTDIR}/font.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/i2c_master_noint.o ${OBJECTDIR}/main.o ${OBJECTDIR}/mpu6050.o ${OBJECTDIR}/nu32dip.o ${OBJECTDIR}/ssd1306.o
+OBJECTFILES=${OBJECTDIR}/i2c_master_noint.o ${OBJECTDIR}/main.o ${OBJECTDIR}/mpu6050.o ${OBJECTDIR}/nu32dip.o ${OBJECTDIR}/ssd1306.o ${OBJECTDIR}/font.o
 
 # Source Files
-SOURCEFILES=i2c_master_noint.c main.c mpu6050.c nu32dip.c ssd1306.c
+SOURCEFILES=i2c_master_noint.c main.c mpu6050.c nu32dip.c ssd1306.c font.c
 
 
 
@@ -157,6 +157,12 @@ ${OBJECTDIR}/ssd1306.o: ssd1306.c  .generated_files/flags/default/74e09715fa0397
 	@${RM} ${OBJECTDIR}/ssd1306.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -O1 -fno-common -MP -MMD -MF "${OBJECTDIR}/ssd1306.o.d" -o ${OBJECTDIR}/ssd1306.o ssd1306.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
+${OBJECTDIR}/font.o: font.c  .generated_files/flags/default/eb0fef3079aec120a7d69c70f20cc0ba98042450 .generated_files/flags/default/49218653c40cfc712883bb5edc9c6f074fd60656
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/font.o.d 
+	@${RM} ${OBJECTDIR}/font.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -O1 -fno-common -MP -MMD -MF "${OBJECTDIR}/font.o.d" -o ${OBJECTDIR}/font.o font.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
 else
 ${OBJECTDIR}/i2c_master_noint.o: i2c_master_noint.c  .generated_files/flags/default/eefb84a02057b0b9b3c1f90d15b4fed7d8940c02 .generated_files/flags/default/49218653c40cfc712883bb5edc9c6f074fd60656
 	@${MKDIR} "${OBJECTDIR}" 
@@ -187,6 +193,12 @@ ${OBJECTDIR}/ssd1306.o: ssd1306.c  .generated_files/flags/default/d23a30453d6b09
 	@${RM} ${OBJECTDIR}/ssd1306.o.d 
 	@${RM} ${OBJECTDIR}/ssd1306.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -O1 -fno-common -MP -MMD -MF "${OBJECTDIR}/ssd1306.o.d" -o ${OBJECTDIR}/ssd1306.o ssd1306.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
+${OBJECTDIR}/font.o: font.c  .generated_files/flags/default/988e988fad42bb96333ef5451c04c96614a42074 .generated_files/flags/default/49218653c40cfc712883bb5edc9c6f074fd60656
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/font.o.d 
+	@${RM} ${OBJECTDIR}/font.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -O1 -fno-common -MP -MMD -MF "${OBJECTDIR}/font.o.d" -o ${OBJECTDIR}/font.o font.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
 endif
 

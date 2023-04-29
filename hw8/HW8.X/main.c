@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include "font.h"
 
-void blink(int, int); // blink the LEDs function
+// Function prototypes
+void HeartBeat();
 
 int main(void) {
     NU32DIP_Startup(); // cache on, interrupts on, LED/button init, UART init
@@ -22,10 +23,10 @@ int main(void) {
 	// floats to store the data
 	float ax, ay, az, gx, gy, gz, t;
 
-	// read whoami
+	// read Who Am I
     unsigned char who;
     who = whoami();
-	// print whoami
+	// print Who Am I
     char who_m[100];
     char m1[100];
     char m2[100];
@@ -33,8 +34,8 @@ int main(void) {
     double fps = 0.0;
     sprintf(who_m,"I am: 0x%X a MPU6050 IMU.", who);
 
-	// if whoami is not 0x68, stuck in loop with LEDs on
-    if(who != 0x68){ //  Syuck here, because the whoami value is wrong
+	// if Who Am I is not 0x68, stuck in loop with LEDs on
+    if(who != 0x68){ //  Stuck here, because the Who Am I value is wrong
         while(1){
         NU32DIP_GREEN = 0; // on
         NU32DIP_YELLOW = 0; // on
@@ -42,9 +43,10 @@ int main(void) {
     }
 
     while (1) {
-		// use core timer for exactly 100Hz loop
+		// use core timer to calculate refresh rate
         _CP0_SET_COUNT(0);
-        blink(1, 5); // To see the LED's flash
+        // Heartbeat LED to see if PIC is stuck in an I2C infinite loop
+        HeartBeat();
         // read IMU
         burst_read_mpu6050(d);
 		// convert data
@@ -70,27 +72,15 @@ int main(void) {
     }
 }
 
-// blink the LEDs
-void blink(int iterations, int time_ms) {
-    int i;
-    unsigned int t;
-    for (i = 0; i < iterations; i++) {
-        NU32DIP_GREEN = 1; // OFF
-        NU32DIP_YELLOW = 0; // ON
-        t = _CP0_GET_COUNT(); // should really check for overflow here
-        // the core timer ticks at half the SYSCLK, so 24000000 times per second
-        // so each millisecond is 24000 ticks
-        // wait half in each delay
-        while (_CP0_GET_COUNT() < t + 12000 * time_ms) {
-        }
-
-        NU32DIP_GREEN = 0; // ON
-        NU32DIP_YELLOW = 1; // OFF
-        t = _CP0_GET_COUNT(); // should really check for overflow here
-        while (_CP0_GET_COUNT() < t + 12000 * time_ms) {
-        }
-        
-
-    }
+/* 
+ * Function blinks yellow LED to display that the PIC is not stuck in code
+*/
+void HeartBeat(){
+      NU32DIP_YELLOW = 1; // OFF
+      _CP0_SET_COUNT(0);
+      while(_CP0_GET_COUNT()<24000000/100) {} // Wait 1ms
+      NU32DIP_YELLOW = 0; // ON
+      _CP0_SET_COUNT(0);
+      while(_CP0_GET_COUNT()<24000000/100) {} // Wait 1ms
 }
 
