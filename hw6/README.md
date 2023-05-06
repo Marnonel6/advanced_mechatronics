@@ -9,7 +9,8 @@ https://user-images.githubusercontent.com/60977336/235218669-94e9466a-300b-4bab-
 
 ![I2C](https://user-images.githubusercontent.com/60977336/235217703-0b44316a-61d4-4432-9f07-23cd853385c5.jpeg)
 
-### Instructions:
+## Instructions: 
+### Credit [@ndm736](https://github.com/ndm736)
 
 The MCP23008 is a DIP chip that gives you 8 more general purpose IO pins. It is controlled by I2C, which uses two pins, so the overall circuit will net gain 6 controllable pins. This is useful for a chip like the PIC32MX170F256B which doesn't have many pins to begin with.
 
