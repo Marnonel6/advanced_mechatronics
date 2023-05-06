@@ -12,7 +12,8 @@ https://user-images.githubusercontent.com/60977336/235324377-103cc625-ac16-4ea9-
 
 ![OLED](https://user-images.githubusercontent.com/60977336/235324341-a847a3eb-7f06-4162-a3c9-540204c92936.jpg)
 
-### Instructions:
+## Instructions: 
+### Credit [@ndm736](https://github.com/ndm736)
 
 The [SSD1306](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) is a driver for OLED displays. We will use a [128x32 pixel I2C breakout board](https://www.amazon.com/Pieces-Display-Module-SSD1306-3-3V-5V/dp/B08CDN5PSJ?crid=1Z1QQJVUYY5I4&keywords=i2c%2Boled&qid=1650981189&sprefix=i2c%2Bole%2Caps%2C561&sr=8-4&th=1&linkCode=sl1&tag=mobile0d9bcdb-20&linkId=bda1cb97625e3872ba225af9d6ace3a2&language=en_US&ref_=as_li_ss_tl)
 
