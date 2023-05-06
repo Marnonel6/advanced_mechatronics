@@ -6,7 +6,8 @@
 - [(hw5) `SPI` communication with a DAC](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw5)
 - [(hw6) `I2C` communication with a 8-Bit I2C I/O Expander ](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw6)
 - [(hw7) `I2C` communication with a IMU - MPU6050](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw7)
-- [(hw8) `I2C` communication with an OLED display and an IMU MPU6050](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw7)
+- [(hw8) `I2C` communication with an OLED display and an IMU MPU6050](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw8)
+- [(hw9) `Digital signal processing` - Low and High-pass filters](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw9)
 
 The following software is necessary:
 - [MPLAB X IDE (v6.05)](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)
