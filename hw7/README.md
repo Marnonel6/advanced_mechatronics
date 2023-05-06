@@ -19,7 +19,8 @@
 
 ![MPU6050_connections](https://user-images.githubusercontent.com/60977336/235257593-c81e41c0-3966-4102-8744-c4e04c9067f4.jpg)
 
-### Instructions:
+## Instructions: 
+### Credit [@ndm736](https://github.com/ndm736)
 
 An IMU, or inertial measurement unit, is a sensor that is used to calculate position, velocity, or acceleration. Modern IMUs are MEMS devices, with built in analog to digital converters, and their own dedicated microcontroller to control and process the data (example from Digikey).
 
