@@ -1,13 +1,15 @@
-# Digital signal processing - [Low and High pass filters](https://fiiir.com/).
+# Digital signal processing - [Low and High-pass filters](https://fiiir.com/).
 
-### High and Low pass filtered heartrate from a phototransistor:
+### Low and High-pass filtered heartrate from a phototransistor:
+- The graph below displays the unfiltered data in blue. 
+- The `high frequency noise` is filtered out with a `low-pass filter` and is displayd in `red` below.
+- The `low frequency drift` in the red line is filtered out with a `high-pass filter` to generate the `green` line in the graph below.
 
+![DSP_on_Heartbeat_data](https://user-images.githubusercontent.com/60977336/236643788-200d86de-cee4-4ec6-aa97-287a7f1d4af6.png)
 
+### Green filtered heart rate:
 
-
-### I2C connections on same bus for OLED display and MPU6050
-
-
+![Screenshot from 2023-05-06 14-37-26](https://user-images.githubusercontent.com/60977336/236643922-d6c28162-85ee-47f7-b28a-8c6d7cb02744.png)
 
 ### Instructions:
 
