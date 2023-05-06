@@ -11,7 +11,8 @@
 
 ![Screenshot from 2023-05-06 14-37-26](https://user-images.githubusercontent.com/60977336/236643922-d6c28162-85ee-47f7-b28a-8c6d7cb02744.png)
 
-### Instructions:
+## Instructions: 
+### Credit [@ndm736](https://github.com/ndm736)
 
 Digital Signal Processing
 
@@ -56,47 +57,47 @@ want to, but the coding experience in Python is a much more valuable skill in th
 
 Make a folder called HW9 in your repo and place the following deliverables in it as you go.
 
-    Download the sample data sets sigA.csv, sigB.csv, sigC.csv, and sigD.csv. A CSV file contains columns of data separated by commas and newlines. It is 
-    not a very efficient way to store data, but it is easy to view and manipulate. Look at this sample code and practice getting data out of the CSVs and 
-    into lists in Python.
+Download the sample data sets sigA.csv, sigB.csv, sigC.csv, and sigD.csv. A CSV file contains columns of data separated by commas and newlines. It is 
+not a very efficient way to store data, but it is easy to view and manipulate. Look at this sample code and practice getting data out of the CSVs and 
+into lists in Python.
 
-    Practice plotting the data in Python using MATPLOTLIB. This sample code shows some examples. Be sure to always give your axes labels and the plot a 
-    title.
+Practice plotting the data in Python using MATPLOTLIB. This sample code shows some examples. Be sure to always give your axes labels and the plot a 
+title.
 
-    The data is collected at a regular rate called the sample rate. We will need to know this value later, so figure out how to calculate it from the 
-    data. The first column in these files is time, the second is the value. Hint: sample rate = number of data points / total time of samples. Python
-    has a useful ability here, the [-1] index of a list is the last value in the list.
+The data is collected at a regular rate called the sample rate. We will need to know this value later, so figure out how to calculate it from the 
+data. The first column in these files is time, the second is the value. Hint: sample rate = number of data points / total time of samples. Python
+has a useful ability here, the [-1] index of a list is the last value in the list.
 
-    sigA, sigB, and sigD contain data with noise (sigC is a square wave). We can filter out the noise, but we need to figure out what cutoff frequencies 
-    to use. Sometimes you know the frequencies to keep and get rid of based on what the project is, but a lot of times you don't. To figure them out, you 
-    need to be able to see the frequency content of the signal, to basically turn a signal vs time into a signal vs frequency plot. This is where the FFT
-    comes in. The Fast Fourier Transform is an algorithm that identifies the magnitude of frequencies in a signal, from 0Hz to half of the sampling 
-    frequency, called the Nyquist Frequency. The Python package NUMPY has an FFT library. Note that an FFT is not the exact representation of the 
-    frequency spectrum of a signal. Ideally you would have a lot of data sampled very rapidly, but inevitably you won't. Also, the number of datapoints 
-    must be a factor of 2, if it is not, the algorithm may insert 0s to make it a factor of 2, but what does this do to you data? Also, the FFT returns 
-    the magnitude at specific frequencies, but you cannot interpolate the magnitude between frequencies, because there is no guarantee that the spectrum 
-    is smooth like that. Great care should be taken to understand how the program you are using has implemented the FFT algorithm, because you may
-    misinterpret the output. So, after saying that, we will skip all of the details, there are whole courses you can take on DSP, data analysis, and
-    spectral analysis. This sample code will take a data list and generate the FFT and plot it. Use this code to generate a figure with a subplot of 
-    the signal vs time and a subplot of the FFT of each CSV.
+sigA, sigB, and sigD contain data with noise (sigC is a square wave). We can filter out the noise, but we need to figure out what cutoff frequencies 
+to use. Sometimes you know the frequencies to keep and get rid of based on what the project is, but a lot of times you don't. To figure them out, you 
+need to be able to see the frequency content of the signal, to basically turn a signal vs time into a signal vs frequency plot. This is where the FFT
+comes in. The Fast Fourier Transform is an algorithm that identifies the magnitude of frequencies in a signal, from 0Hz to half of the sampling 
+frequency, called the Nyquist Frequency. The Python package NUMPY has an FFT library. Note that an FFT is not the exact representation of the 
+frequency spectrum of a signal. Ideally you would have a lot of data sampled very rapidly, but inevitably you won't. Also, the number of datapoints 
+must be a factor of 2, if it is not, the algorithm may insert 0s to make it a factor of 2, but what does this do to you data? Also, the FFT returns 
+the magnitude at specific frequencies, but you cannot interpolate the magnitude between frequencies, because there is no guarantee that the spectrum 
+is smooth like that. Great care should be taken to understand how the program you are using has implemented the FFT algorithm, because you may
+misinterpret the output. So, after saying that, we will skip all of the details, there are whole courses you can take on DSP, data analysis, and
+spectral analysis. This sample code will take a data list and generate the FFT and plot it. Use this code to generate a figure with a subplot of 
+the signal vs time and a subplot of the FFT of each CSV.
 
-    Let's start by low-pass filtering the data with a moving average filter. Write a loop that averages the last X number of data points and saves the 
-    result in a new list. The new list will have X fewer data points, or you can assume the X data points before you started were 0. For each CSV, try 
-    a few different X values and choose the "best" by eye, some value that smooths the value without delaying it too much. Generate the FFT of the 
-    filtered data and plot it on the same plot as the unfiltered FFT. Can you see the low-pass effect of the moving average filter based on the difference
-    in the FFTs? Upload an image of a plot of each CSV with the unfiltered data in black, the filtered in red, and the number of data points averaged in 
-    the title, as well as your code.
+Let's start by low-pass filtering the data with a moving average filter. Write a loop that averages the last X number of data points and saves the 
+result in a new list. The new list will have X fewer data points, or you can assume the X data points before you started were 0. For each CSV, try 
+a few different X values and choose the "best" by eye, some value that smooths the value without delaying it too much. Generate the FFT of the 
+filtered data and plot it on the same plot as the unfiltered FFT. Can you see the low-pass effect of the moving average filter based on the difference
+in the FFTs? Upload an image of a plot of each CSV with the unfiltered data in black, the filtered in red, and the number of data points averaged in 
+the title, as well as your code.
 
-    Now try low-pass filtering with an IIR. Write a loop that adds a value into the average with the two weights A and B, so that 
-    new_average[i] = A * new_average[i-1] + B * signal[i]. Note that A+B=1, otherwise the signal will get bigger with time (A+B>1) or go to 0 (A+B<1). 
-    Try a few different values of A and B for each CSV, save the "best", and make a plot comparing the before and after FFTs. Upload an image of a plot 
-    of each CSV with the unfiltered data in black, the filtered in red, and the weights A and B in the title, as well as your code.
+Now try low-pass filtering with an IIR. Write a loop that adds a value into the average with the two weights A and B, so that 
+new_average[i] = A * new_average[i-1] + B * signal[i]. Note that A+B=1, otherwise the signal will get bigger with time (A+B>1) or go to 0 (A+B<1). 
+Try a few different values of A and B for each CSV, save the "best", and make a plot comparing the before and after FFTs. Upload an image of a plot 
+of each CSV with the unfiltered data in black, the filtered in red, and the weights A and B in the title, as well as your code.
 
-    So far the process has been rather guess-and-check. You can usually get away with a MAF or IIR filter, just like you can with a simple RC filter on 
-    an analog circuit. But when the signal is small and the noise is big, you need to break out the FIR. In an FIR filter you remember that last X number
-    of samples, and sum them with unique weights to create the filtered output, like a combination of the MAF and IIR. The interesting part is the
-    selection of the values of the weights, and how many samples to use (X). To do this, we need a simulator to show the frequency response, or how much 
-    each frequency will be attenuated, kind of like a frequency dependent gain. This website generates weights and shows the frequency response. Try the 
-    MAF to see the shape of the frequency response. Note that there is no clear cutoff frequency, and some lower frequencies are attenuated more than 
-    some higher frequencies. Based on the FFTs you made in Part 4, choose a cutoff frequency and use the Low-pass sinc, and try a few different cutoff 
-    frequencies, bandwidths, and window types. Write a loop to apply the weights, compare the filtered and unfiltered signals, and compare the FFTs.
+So far the process has been rather guess-and-check. You can usually get away with a MAF or IIR filter, just like you can with a simple RC filter on 
+an analog circuit. But when the signal is small and the noise is big, you need to break out the FIR. In an FIR filter you remember that last X number
+of samples, and sum them with unique weights to create the filtered output, like a combination of the MAF and IIR. The interesting part is the
+selection of the values of the weights, and how many samples to use (X). To do this, we need a simulator to show the frequency response, or how much 
+each frequency will be attenuated, kind of like a frequency dependent gain. This website generates weights and shows the frequency response. Try the 
+MAF to see the shape of the frequency response. Note that there is no clear cutoff frequency, and some lower frequencies are attenuated more than 
+some higher frequencies. Based on the FFTs you made in Part 4, choose a cutoff frequency and use the Low-pass sinc, and try a few different cutoff 
+frequencies, bandwidths, and window types. Write a loop to apply the weights, compare the filtered and unfiltered signals, and compare the FFTs.
