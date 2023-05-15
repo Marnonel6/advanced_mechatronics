@@ -8,6 +8,7 @@
 - [(hw7) `I2C` communication with a IMU - MPU6050](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw7)
 - [(hw8) `I2C` communication with an OLED display and an IMU MPU6050](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw8)
 - [(hw9) `Digital signal processing` on heartbeat data - Low and High-pass filters](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw9)
+- [(hw10) Neopixel](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw10)
 
 The following software is necessary:
 - [MPLAB X IDE (v6.05)](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)
