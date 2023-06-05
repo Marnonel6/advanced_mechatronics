@@ -1,6 +1,6 @@
 /* 
  * File:   utilities.h
- * Author: marno
+ * Author: Marthinus (Marno) Nel
  *
  * Created on June 4, 2023, 6:03 PM
  */
@@ -13,27 +13,17 @@
 #include "nu32dip.h"
 
 // Motor direction pins
-//#define MOTOR_1_DIRECTION LATBbits.LATB2
-#define MOTOR_1_DIRECTION LATBbits.LATB14 //// NEW
-//#define MOTOR_2_DIRECTION LATBbits.LATB11
+#define MOTOR_1_DIRECTION LATBbits.LATB14
 #define MOTOR_2_DIRECTION LATBbits.LATB12
-// Motor PWM / Speed
+
+// Motor PWM / Speed variables
 #define MOTOR_1_SPEED OC1RS
-//#define MOTOR_2_SPEED OC2RS
 #define MOTOR_2_SPEED OC4RS
 
-//#define TICK_TO_DEG 3.888889// Ticks per degree (1400/360)
+// Timer 3 Period
 #define PR3_PERIOD 2400
-//#define PR4_PERIOD 15000
-
-// an enum of possible states, public in the utilities h file
-//enum mode_t {IDLE, PWM, ITEST, HOLD, TRACK};
 
 // public function prototypes in the utilities h file
-//volatile enum mode_t get_mode(void);
-//void set_mode(enum mode_t s);
 void setup_motor_timers_pins();
-//void setup_position_controller_timer();
-
 
 #endif	/* UTILITIES_H */
