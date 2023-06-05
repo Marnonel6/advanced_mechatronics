@@ -7,9 +7,9 @@ int main(void) {
     setup_motor_timers_pins();     // Setup timers and interrupts for motor control
 
     while (1) {
-        MOTOR_1_DIRECTION = 0; // Clockwise
-        MOTOR_1_SPEED = (int)(PR3_PERIOD*(float)100.0/100.0);
-        MOTOR_2_DIRECTION = 0; // Clockwise
-        MOTOR_2_SPEED = (int)(PR3_PERIOD*(float)100.0/100.0);
+        MOTOR_1_DIRECTION = 0; // Forward -> Left wheel
+        MOTOR_1_SPEED = (int)(PR3_PERIOD*(float)50.0/100.0);
+        MOTOR_2_DIRECTION = 1; // Forward -> Right wheel
+        MOTOR_2_SPEED = (int)(PR3_PERIOD*(float)50.0/100.0);
     }
 }
