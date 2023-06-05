@@ -13,11 +13,14 @@
 #include "nu32dip.h"
 
 // Motor direction pins
-#define MOTOR_1_DIRECTION LATBbits.LATB2
-#define MOTOR_2_DIRECTION LATBbits.LATB11
+//#define MOTOR_1_DIRECTION LATBbits.LATB2
+#define MOTOR_1_DIRECTION LATBbits.LATB14 //// NEW
+//#define MOTOR_2_DIRECTION LATBbits.LATB11
+#define MOTOR_2_DIRECTION LATBbits.LATB12
 // Motor PWM / Speed
 #define MOTOR_1_SPEED OC1RS
-#define MOTOR_2_SPEED OC2RS
+//#define MOTOR_2_SPEED OC2RS
+#define MOTOR_2_SPEED OC4RS
 
 //#define TICK_TO_DEG 3.888889// Ticks per degree (1400/360)
 #define PR3_PERIOD 2400

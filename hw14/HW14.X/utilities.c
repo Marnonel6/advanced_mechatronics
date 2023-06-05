@@ -18,7 +18,8 @@
 void setup_motor_timers_pins()
 {
     // Select RB2 pin for motor direction control
-    TRISBCLR = 0b100000000100; //0x4;
+//    TRISBCLR = 0b100000000100; //0x4; 11 & 2
+    TRISBCLR = 0b101000000000000; // 12 & 14
     MOTOR_1_DIRECTION = 0; // Clockwise
     MOTOR_2_DIRECTION = 0; // Clockwise
 
@@ -36,22 +37,28 @@ void setup_motor_timers_pins()
 //    OC1CONbits.ON = 1;       // turn on OC1
 
     // Assign OC1 to RA0
-    RPA0Rbits.RPA0R = 0b0101; // Set A0 to OC1
-    RPA1Rbits.RPA1R = 0b0101; // Set A1 to OC2
+//    RPA0Rbits.RPA0R = 0b0101; // Set A0 to OC1
+    RPB15Rbits.RPB15R = 0b0101; ////// Set B15 to OC1
+//    RPA1Rbits.RPA1R = 0b0101; // Set A1 to OC2
+    RPB13Rbits.RPB13R = 0b0101; ////// Set B13 to OC4
     T3CONbits.TCKPS = 0b001;  // Timer3 prescaler
     PR3 = PR3_PERIOD - 1;     // period
     TMR3 = 0;                 // initial TMR3 count is 0
     OC1CONbits.OCM = 0b110;   // PWM mode without fault pin; other OC1CON bits are defaults
     MOTOR_1_SPEED = 1000;             // duty cycle = OC1RS/(PR3+1) = X%
     OC1R = 1000;              // initialize before turning OC1 on; afterward it is read-only
-    OC2CONbits.OCM = 0b110;   // PWM mode without fault pin; other OC2CON bits are defaults
+//    OC2CONbits.OCM = 0b110;   // PWM mode without fault pin; other OC2CON bits are defaults
+    OC4CONbits.OCM = 0b110;   // PWM mode without fault pin; other OC2CON bits are defaults
     MOTOR_2_SPEED = 1000;             // duty cycle = OC2RS/(PR3+1) = X%
-    OC2R = 1000;              // initialize before turning OC2 on; afterward it is read-only
+//    OC2R = 1000;              // initialize before turning OC2 on; afterward it is read-only
+    OC4R = 1000;
     T3CONbits.ON = 1;         // turn on Timer3
     OC1CONbits.ON = 1;        // turn on OC1
     OC1CONbits.OCTSEL = 1;
-    OC2CONbits.ON = 1;        // turn on OC2
-    OC2CONbits.OCTSEL = 1;
+//    OC2CONbits.ON = 1;        // turn on OC2
+//    OC2CONbits.OCTSEL = 1;
+    OC4CONbits.ON = 1;        // turn on OC4
+    OC4CONbits.OCTSEL = 1;
 
 //    // Set the CURRENT control loop (Timer 2 interrupt) to 5kHz
 //    T2CONbits.TCKPS = 0b000; // Timer2 prescaler
