@@ -12,8 +12,13 @@
 #include <sys/attribs.h> // __ISR macro
 #include "nu32dip.h"
 
-#define MOTOR_DIRECTION1 LATBbits.LATB2
-#define MOTOR_DIRECTION2 LATBbits.LATB11
+// Motor direction pins
+#define MOTOR_1_DIRECTION LATBbits.LATB2
+#define MOTOR_2_DIRECTION LATBbits.LATB11
+// Motor PWM / Speed
+#define MOTOR_1_SPEED OC1RS
+#define MOTOR_2_SPEED OC2RS
+
 //#define TICK_TO_DEG 3.888889// Ticks per degree (1400/360)
 #define PR3_PERIOD 2400
 //#define PR4_PERIOD 15000

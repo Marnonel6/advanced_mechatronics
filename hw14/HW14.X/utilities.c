@@ -19,8 +19,8 @@ void setup_motor_timers_pins()
 {
     // Select RB2 pin for motor direction control
     TRISBCLR = 0b100000000100; //0x4;
-    MOTOR_DIRECTION1 = 0; // Clockwise
-    MOTOR_DIRECTION2 = 0; // Clockwise
+    MOTOR_1_DIRECTION = 0; // Clockwise
+    MOTOR_2_DIRECTION = 0; // Clockwise
 
     // 20kHz Timer for PWM for each motor
     
@@ -42,10 +42,10 @@ void setup_motor_timers_pins()
     PR3 = PR3_PERIOD - 1;     // period
     TMR3 = 0;                 // initial TMR3 count is 0
     OC1CONbits.OCM = 0b110;   // PWM mode without fault pin; other OC1CON bits are defaults
-    OC1RS = 1000;             // duty cycle = OC1RS/(PR3+1) = X%
+    MOTOR_1_SPEED = 1000;             // duty cycle = OC1RS/(PR3+1) = X%
     OC1R = 1000;              // initialize before turning OC1 on; afterward it is read-only
     OC2CONbits.OCM = 0b110;   // PWM mode without fault pin; other OC2CON bits are defaults
-    OC2RS = 1000;             // duty cycle = OC2RS/(PR3+1) = X%
+    MOTOR_2_SPEED = 1000;             // duty cycle = OC2RS/(PR3+1) = X%
     OC2R = 1000;              // initialize before turning OC2 on; afterward it is read-only
     T3CONbits.ON = 1;         // turn on Timer3
     OC1CONbits.ON = 1;        // turn on OC1
