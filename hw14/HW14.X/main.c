@@ -8,7 +8,9 @@ int main(void) {
 
     while (1) {
 		// use core timer to calculate refresh rate
-        MOTOR_DIRECTION = 0; // Clockwise
-        OC1RS = (int)(PR3_PERIOD*(float)100.0/100.0);
+        MOTOR_DIRECTION1 = 0; // Clockwise
+        OC1RS = (int)(PR3_PERIOD*(float)50.0/100.0);
+        MOTOR_DIRECTION2 = 0; // Clockwise
+        OC2RS = (int)(PR3_PERIOD*(float)100.0/100.0);
     }
 }
