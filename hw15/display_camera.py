@@ -62,9 +62,9 @@ bitmap = None
 # Select the biggest size for which we can allocate a bitmap successfully, and
 # which is not bigger than the display
 for size in range(OV7670_SIZE_DIV1, OV7670_SIZE_DIV16 + 1):
-    #cam.size = size # for 4Hz
+    cam.size = size # for 4Hz
     #cam.size = OV7670_SIZE_DIV16 # for 30x40, 9Hz
-    cam.size = OV7670_SIZE_DIV8 # for 60x80, 9Hz
+    #cam.size = OV7670_SIZE_DIV8 # for 60x80, 9Hz
     if cam.width > width:
         continue
     if cam.height > height:
