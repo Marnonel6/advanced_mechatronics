@@ -23,3 +23,8 @@ The following software is necessary:
 - [Python3](https://www.python.org/downloads/)
 
 The PIC32 was preprogrammed with a bootloader (from ME333). We will use a program called nu32utility to send the compiled code to the PIC32 using a virtual serial port. To compile nu32utility you will need gcc. gcc is already on OSX and linux, and can be installed on Windows with mingw.
+
+# [Final Project](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw16)
+https://github.com/Marnonel6/advanced_mechatronics/assets/60977336/0a9354a2-5b61-4926-b785-c4b6b43be233
+
+![IMG_6564](https://github.com/Marnonel6/advanced_mechatronics/assets/60977336/1fcd6fcf-64f8-4fc5-92d8-3e8639172bbd)
