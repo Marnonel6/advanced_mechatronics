@@ -27,6 +27,9 @@ spi = busio.SPI(clock=board.GP2, MOSI=board.GP3)
 display_bus = FourWire(spi, command=board.GP0, chip_select=board.GP1, reset=None)
 display = ST7735R(display_bus, width=160, height=128, rotation=90)
 
+# Init Pico UART code
+uart = busio.UART(board.GP4, board.GP5, baudrate=9600) #tx pin, rx pin
+
 # Ensure the camera is shut down, so that it releases the SDA/SCL lines,
 # then create the configuration I2C bus
 
@@ -76,7 +79,7 @@ for size in range(OV7670_SIZE_DIV1, OV7670_SIZE_DIV16 + 1):
     except MemoryError:
         continue
 
-print(width, height, cam.width, cam.height)
+#print(width, height, cam.width, cam.height)
 if bitmap is None:
     raise SystemExit("Could not allocate a bitmap")
 time.sleep(4)
@@ -95,6 +98,9 @@ reds = np.zeros(60,dtype=np.uint16)
 greens = np.zeros(60,dtype=np.uint16)
 blues = np.zeros(60,dtype=np.uint16)
 bright = np.zeros(60)
+
+# Prev_COM = 30
+
 while True:
     cam.capture(bitmap)
     #bitmap[10,10] = 0 # set a pixel to black
@@ -106,7 +112,7 @@ while True:
     #0xF800 -> 0b1111100000000000 # all blue
 
     # wait for a newline from the computer
-    input()
+    #input()
     row = 40 # which row to send to the computer
     # draw a red dot above the row, in the middle
     bitmap[row+1,30] = 0x3F<<5
@@ -130,12 +136,386 @@ while True:
     #        bitmap[row,i] = 0xFFFF
     #    else:
     #        bitmap[row,i] = 0x0000
-    # print the raw pixel value to the computer
+
+    #COM = 30 # Center -> pixel 30
+    #sum_color_index = 0
+    #sum_color = 0
+    #for i in range(0,60):
+    #    if (greens[i]<50):
+    #        bitmap[row,i] = 0xFFFF
+    #        sum_color_index += i*1
+    #        sum_color += 1
+    #    else:
+    #        bitmap[row,i] = 0x0000
+
+    # Line in image
+    #if sum_color!=0 and sum_color_index!=0:
+    #    COM = sum_color_index/sum_color
+    #else: # Line not in image
+    #    COM = 1000
+
+
+    """ WORKS WELL FOR BLACK ON WHITE """
+    # G_High_px = 0
+    # G_Low_px = 0
+    # G_sum = 0
+    # for i in range(0,60):
+    #     G_sum += reds[i]
+    # G_avg = G_sum/60
+
+    # for i in range(0,60):
+    #     if (reds[i]<G_avg):
+    #         G_Low_px += 1
+    #     else:
+    #         G_High_px += 1
+
+    # if G_Low_px < G_High_px:
+    #     line = 0 # Low value are line pixels
+    # else:
+    #     line = 1 # High values are line pixels
+
+    # COM = 30 # Center -> pixel 30
+    # sum_color_index = 0
+    # sum_color = 0
+    # for i in range(0,60):
+    #     if line == 0:
+    #         if (reds[i]<G_avg):
+    #             bitmap[row,i] = 0xFFFF
+    #             sum_color_index += i*1
+    #             sum_color += 1
+    #         else:
+    #             bitmap[row,i] = 0x0000
+
+    #     else:
+    #         if (reds[i]>G_avg):
+    #             bitmap[row,i] = 0xFFFF
+    #             sum_color_index += i*1
+    #             sum_color += 1
+    #         else:
+    #             bitmap[row,i] = 0x0000
+
+
+    # # Line in image
+    # if sum_color!=0 and sum_color_index!=0:
+    #     COM = sum_color_index/sum_color
+    # else: # Line not in image9
+    #     COM = 1000
+
+
+    """ Choose minima beteen 3 colors """
+    R_High_px = 0
+    R_Low_px = 0
+    R_sum = 0
+    G_High_px = 0
+    G_Low_px = 0
+    G_sum = 0
+    B_High_px = 0
+    B_Low_px = 0
+    B_sum = 0
     for i in range(0,60):
-        print(str(i)+" "+str(bitmap[row,i]))
+        R_sum += reds[i]
+        G_sum += greens[i]
+        B_sum += blues[i]
+    R_avg = R_sum/60
+    G_avg = G_sum/60
+    B_avg = B_sum/60
+
+    for i in range(0,60):
+        if (reds[i]<R_avg):
+            R_Low_px += 1
+        elif (reds[i]>R_avg):
+            R_High_px += 1
+
+        if (greens[i]<G_avg):
+            G_Low_px += 1
+        elif (greens[i]>G_avg):
+            G_High_px += 1
+
+        if (blues[i]<B_avg):
+            B_Low_px += 1
+        elif (blues[i]>B_avg):
+            B_High_px += 1
+
+    if R_Low_px < R_High_px:
+        min_red = R_Low_px # Low value are line pixels
+        i_min_red = 0
+    else:
+        min_red = R_High_px # High values are line pixels
+        i_min_red = 1
+
+    if G_Low_px < G_High_px:
+        min_green = G_Low_px # Low value are line pixels
+        i_min_green = 0
+    else:
+        min_green = G_High_px # High values are line pixels
+        i_min_green = 1
+    if B_Low_px < B_High_px:
+        min_blue = B_Low_px # Low value are line pixels
+        i_min_blue = 0
+    else:
+        min_blue = B_High_px # High values are line pixels
+        i_min_blue = 1
+
+    if min_red <= min_green:
+        if min_red <= min_blue:
+            min_color = min_red
+            i_min = i_min_red
+            color = 'red'
+    elif min_green <= min_blue:
+        min_color = min_green
+        i_min = i_min_green
+        color = 'green'
+    else:
+        min_color = min_blue
+        i_min = i_min_blue
+        color = 'blue'
+
+    COM = 30 # Center -> pixel 30
+    sum_color_index = 0
+    sum_color = 0
+    for i in range(0,60):
+       # print(f"color = {color}") # Uncomment
+        if color == 'red':
+            if i_min == 0:
+                if (reds[i]<R_avg):
+                    bitmap[row,i] = 0x0000
+                    sum_color_index += i*1
+                    sum_color += 1
+                else:
+                    bitmap[row,i] = 0xFFFF
+
+            else:
+                if (reds[i]>R_avg):
+                    bitmap[row,i] = 0x0000
+                    sum_color_index += i*1
+                    sum_color += 1
+                else:
+                    bitmap[row,i] = 0xFFFF
+        elif color == 'green':
+            if i_min == 0:
+                if (greens[i]<G_avg):
+                    bitmap[row,i] = 0x0000
+                    sum_color_index += i*1
+                    sum_color += 1
+                else:
+                    bitmap[row,i] = 0xFFFF
+
+            else:
+                if (greens[i]>G_avg):
+                    bitmap[row,i] = 0x0000
+                    sum_color_index += i*1
+                    sum_color += 1
+                else:
+                    bitmap[row,i] = 0xFFFF
+        elif color == 'blue':
+            if i_min == 0:
+                if (blues[i]<B_avg):
+                    bitmap[row,i] = 0x0000
+                    sum_color_index += i*1
+                    sum_color += 1
+                else:
+                    bitmap[row,i] = 0xFFFF
+
+            else:
+                if (blues[i]>B_avg):
+                    bitmap[row,i] = 0x0000
+                    sum_color_index += i*1
+                    sum_color += 1
+                else:
+                    bitmap[row,i] = 0xFFFF
+
+
+    # Line in image
+    if sum_color!=0 and sum_color_index!=0:
+        COM = sum_color_index/sum_color
+    else: # Line not in image
+        COM = 30
+
+    # # Will stop jumps from happening
+    # if abs(COM - Prev_COM) > 20:
+    #     COM = Prev_COM
+
+    # Prev_COM = COM
+
+
+
+    """ END OF RGB color choose """
+
+
+
+    """ Get avg line between RGB """
+    # R_High_px = 0
+    # R_Low_px = 0
+    # R_sum = 0
+    # G_High_px = 0
+    # G_Low_px = 0
+    # G_sum = 0
+    # B_High_px = 0
+    # B_Low_px = 0
+    # B_sum = 0
+    # for i in range(0,60):
+    #     R_sum += reds[i]
+    #     G_sum += greens[i]
+    #     B_sum += blues[i]
+    # R_avg = R_sum/60
+    # G_avg = G_sum/60
+    # B_avg = B_sum/60
+
+    # for i in range(0,60):
+    #     if (reds[i]<R_avg):
+    #         R_Low_px += 1
+    #     elif (reds[i]>R_avg):
+    #         R_High_px += 1
+
+    #     if (greens[i]<G_avg):
+    #         G_Low_px += 1
+    #     elif (greens[i]>G_avg):
+    #         G_High_px += 1
+
+    #     if (blues[i]<B_avg):
+    #         B_Low_px += 1
+    #     elif (blues[i]>B_avg):
+    #         B_High_px += 1
+
+    # if R_Low_px < R_High_px:
+    #     min_red = R_Low_px # Low value are line pixels
+    #     i_min_red = 0
+    # else:
+    #     min_red = R_High_px # High values are line pixels
+    #     i_min_red = 1
+
+    # if G_Low_px < G_High_px:
+    #     min_green = G_Low_px # Low value are line pixels
+    #     i_min_green = 0
+    # else:
+    #     min_green = G_High_px # High values are line pixels
+    #     i_min_green = 1
+    # if B_Low_px < B_High_px:
+    #     min_blue = B_Low_px # Low value are line pixels
+    #     i_min_blue = 0
+    # else:
+    #     min_blue = B_High_px # High values are line pixels
+    #     i_min_blue = 1
+
+    # if min_red <= min_green:
+    #     if min_red <= min_blue:
+    #         min_color = min_red
+    #         i_min = i_min_red
+    #         color = 'red'
+    # elif min_green <= min_blue:
+    #     min_color = min_green
+    #     i_min = i_min_green
+    #     color = 'green'
+    # else:
+    #     min_color = min_blue
+    #     i_min = i_min_blue
+    #     color = 'blue'
+
+    # COM = 0
+    # COM_R = 30 # Center -> pixel 30
+    # sum_color_index_R = 0
+    # sum_color_R = 0
+    # COM_G = 30 # Center -> pixel 30
+    # sum_color_index_G = 0
+    # sum_color_G = 0
+    # COM_B = 30 # Center -> pixel 30
+    # sum_color_index_B = 0
+    # sum_color_B = 0
+
+    # for i in range(0,60):
+    #    # print(f"color = {color}") # Uncomment
+    #         if i_min_red == 0:
+    #             if (reds[i]<R_avg):
+    #                 bitmap[row,i] = 0x0000
+    #                 sum_color_index_R += i*1
+    #                 sum_color_R += 1
+    #             else:
+    #                 bitmap[row,i] = 0xFFFF
+
+    #         else:
+    #             if (reds[i]>R_avg):
+    #                 bitmap[row,i] = 0x0000
+    #                 sum_color_index_R += i*1
+    #                 sum_color_R += 1
+    #             else:
+    #                 bitmap[row,i] = 0xFFFF
+
+    #         if i_min_green == 0:
+    #             if (greens[i]<G_avg):
+    #                 bitmap[row,i] = 0x0000
+    #                 sum_color_index_G += i*1
+    #                 sum_color_G += 1
+    #             else:
+    #                 bitmap[row,i] = 0xFFFF
+
+    #         else:
+    #             if (greens[i]>G_avg):
+    #                 bitmap[row,i] = 0x0000
+    #                 sum_color_index_G += i*1
+    #                 sum_color_G += 1
+    #             else:
+    #                 bitmap[row,i] = 0xFFFF
+
+    #         if i_min_blue == 0:
+    #             if (blues[i]<B_avg):
+    #                 bitmap[row,i] = 0x0000
+    #                 sum_color_index_B += i*1
+    #                 sum_color_B += 1
+    #             else:
+    #                 bitmap[row,i] = 0xFFFF
+
+    #         else:
+    #             if (blues[i]>B_avg):
+    #                 bitmap[row,i] = 0x0000
+    #                 sum_color_index_B += i*1
+    #                 sum_color_B += 1
+    #             else:
+    #                 bitmap[row,i] = 0xFFFF
+
+    # # Line in image
+    # if sum_color_R!=0 and sum_color_index_R!=0:
+    #     COM_R = sum_color_index_R/sum_color_R
+    # else: # Line not in image
+    #     COM_R = 30
+
+    # # Line in image
+    # if sum_color_G!=0 and sum_color_index_G!=0:
+    #     COM_G = sum_color_index_G/sum_color_G
+    # else: # Line not in image
+    #     COM_G = 30
+
+    # # Line in image
+    # if sum_color_B!=0 and sum_color_index_B!=0:
+    #     COM_B = sum_color_index_B/sum_color_B
+    # else: # Line not in image
+    #     COM_B = 30
+
+    # COM = (COM_B + COM_G + COM_R)/3.0
+
+
+    """ END OF RGB average line """
+
+
+    # draw a red line for estimate line position
+    for i in range(0,80):
+        bitmap[i, int(COM)] = 0x3F<<5
+
+
+    #print(f"COM = {COM}") # Uncomment
+
+    # print the raw pixel value to the computer
+    #for i in range(0,60):
+    #    print(str(i)+" "+str(bitmap[row,i]))
+
+
+    # Uncomment
+    # After reading an image and finding the line send the center to PIC over UART
+    value_str = str(COM) +'\n'
+    uart.write(value_str.encode())
 
     bitmap.dirty() # updae the image on the screen
     display.refresh(minimum_frames_per_second=0)
     t1 = time.monotonic_ns()
     #print("fps", 1e9 / (t1 - t0))
     t0 = t1
+

@@ -69,13 +69,31 @@ int main(void) {
                 
                 
         // P Controller -> WORKS GREAT JUST HOLD A LIGHT
+                
+          // Works !
+//        int set_point = 30;
+//        int Kp = 1.5;
+//        int error = 0;
+//        int max_pwm = 50;
+//        int min_pwm = 0;
+//        int base_pwm = 25;
+                
+        // Best one
         int set_point = 30;
-        int Kp = 1.0;
+        int Kp = 1.5; //1.2;
         int error = 0;
         int max_pwm = 70;
-        int min_pwm = 20;
-        int base_pwm = 30;
-        
+        int min_pwm = 0;
+        int base_pwm = 35;
+                
+                
+//        int set_point = 30;
+//        int Kp = 2.0;
+//        int error = 0;
+//        int max_pwm = 100;
+//        int min_pwm = 0;
+//        int base_pwm = 30;
+//        
         error = com - set_point;
         
         MOTOR_RIGHT_DIRECTION = 1; // Forward -> Right wheel
@@ -88,8 +106,9 @@ int main(void) {
             MOTOR_RIGHT_SPEED = (int)(PR3_PERIOD*(float)max_pwm/100.0);
         }
         else if (left_pwm <= min_pwm){
-            MOTOR_RIGHT_DIRECTION = 0;
-            MOTOR_RIGHT_SPEED = (int)(PR3_PERIOD*(float)base_pwm/100.0);
+//            MOTOR_RIGHT_DIRECTION = 0;
+//            MOTOR_RIGHT_SPEED = (int)(PR3_PERIOD*(float)base_pwm/100.0);
+            MOTOR_RIGHT_SPEED = (int)(PR3_PERIOD*(float)min_pwm/100.0);
         }
         else {
             MOTOR_RIGHT_SPEED = (int)(PR3_PERIOD*(float)left_pwm/100.0);
@@ -99,13 +118,45 @@ int main(void) {
             MOTOR_LEFT_SPEED = (int)(PR3_PERIOD*(float)max_pwm/100.0);
         }
         else if (right_pwm <= min_pwm){
-            MOTOR_LEFT_DIRECTION = 1;
-            MOTOR_LEFT_SPEED = (int)(PR3_PERIOD*(float)base_pwm/100.0);
+//            MOTOR_LEFT_DIRECTION = 1;
+//            MOTOR_LEFT_SPEED = (int)(PR3_PERIOD*(float)base_pwm/100.0);
+            MOTOR_LEFT_SPEED = (int)(PR3_PERIOD*(float)min_pwm/100.0);
         }
         else {
             MOTOR_LEFT_SPEED = (int)(PR3_PERIOD*(float)right_pwm/100.0);
         }
-                
+        
+ 
+        if (error > 10.0 || error < -10.0){
+            _CP0_SET_COUNT(0);
+            while(_CP0_GET_COUNT()<24000000/10) {} // Wait 10ms
+
+            MOTOR_LEFT_SPEED = (int)(PR3_PERIOD*(float)0.0/100.0);
+            MOTOR_RIGHT_SPEED = (int)(PR3_PERIOD*(float)0.0/100.0);
+
+            _CP0_SET_COUNT(0);
+            while(_CP0_GET_COUNT()<24000000/10) {} // Wait 10ms //10
+        }
+//        else{
+//            _CP0_SET_COUNT(0);
+//            while(_CP0_GET_COUNT()<24000000/10) {} // Wait 10ms
+//
+//            MOTOR_LEFT_SPEED = (int)(PR3_PERIOD*(float)0.0/100.0);
+//            MOTOR_RIGHT_SPEED = (int)(PR3_PERIOD*(float)0.0/100.0);
+//
+//            _CP0_SET_COUNT(0);
+//            while(_CP0_GET_COUNT()<24000000/20) {} // Wait 5ms //20
+//        }
+//                
+       
+//        _CP0_SET_COUNT(0);
+//        while(_CP0_GET_COUNT()<24000000/10) {} // Wait 10ms
+//        
+//        MOTOR_LEFT_SPEED = (int)(PR3_PERIOD*(float)0.0/100.0);
+//        MOTOR_RIGHT_SPEED = (int)(PR3_PERIOD*(float)0.0/100.0);
+//        
+//        _CP0_SET_COUNT(0);
+//        while(_CP0_GET_COUNT()<24000000/20) {} // Wait 5ms
                 
                 
                 
@@ -114,15 +165,22 @@ int main(void) {
 //        int Kp = 1.0; // 3           // DO NOT INCREASE ABOVE THIS WITHOUT ADDING PWM LIMITS
 //        int error = 0;
 //        int max_pwm = 50;
-//        int min_pwm = 20;
-//        int base_pwm = 30;
+//        int min_pwm = 0;
+//        int base_pwm = 25;
 //        
+////        // Quarters
+////        int Q1 = 0;
+////        int Q2 = 15;
+////        int Q3 = 25;
+////        int Q4 = 35;
+////        int Q5 = 45;
+////        int Q6 = 60;
 //        // Quarters
 //        int Q1 = 0;
-//        int Q2 = 15;
+//        int Q2 = 10;
 //        int Q3 = 25;
 //        int Q4 = 35;
-//        int Q5 = 45;
+//        int Q5 = 50;
 //        int Q6 = 60;
 //        
 //        error = com - set_point;
@@ -155,8 +213,8 @@ int main(void) {
 //        else if (Q3 < com && com <= Q4){ // Line in center
 //            MOTOR_RIGHT_DIRECTION = 1; // Forward -> Right wheel
 //            MOTOR_LEFT_DIRECTION = 0; // Forward -> Left wheel
-//            left_pwm = max_pwm;
-//            right_pwm = max_pwm;
+//            left_pwm = max_pwm-10;
+//            right_pwm = max_pwm-10;
 //            
 //            char line_center[100];
 //            sprintf(line_center,"%d\n\n\n\r",3);
@@ -193,18 +251,18 @@ int main(void) {
 //        
 //        
 //        // Limit PWM
-//        if (left_pwm > 100.0){
-//            left_pwm = 100.0;
+//        if (left_pwm > max_pwm){
+//            left_pwm = max_pwm;
 //        }
-//        else if (left_pwm < 0.0){
-//            left_pwm = 0.0;
+//        else if (left_pwm < min_pwm){
+//            left_pwm = min_pwm;
 //        }
 //        
-//        if (right_pwm > 100.0){
-//            right_pwm = 100.0;
+//        if (right_pwm > max_pwm){
+//            right_pwm = max_pwm;
 //        }
-//        else if (right_pwm < 0.0){
-//            right_pwm = 0.0;
+//        else if (right_pwm < min_pwm){
+//            right_pwm = min_pwm;
 //        }
 //        
 //        MOTOR_RIGHT_SPEED = (int)(PR3_PERIOD*(float)right_pwm/100.0);
