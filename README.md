@@ -35,3 +35,7 @@ https://github.com/Marnonel6/advanced_mechatronics/assets/60977336/0a9354a2-5b61
 ![full_working_circuit](https://user-images.githubusercontent.com/60977336/229938856-97cbb602-3ced-4bfe-8a8e-54fa803d214e.JPEG)
 
 ![Schematic_Mechatronics](https://user-images.githubusercontent.com/60977336/229938869-3487eb62-1454-4c9c-b0fc-f4483e748246.png)
+
+# KiCAD PCB:
+
+![Screenshot from 2023-05-26 12-06-51](https://github.com/Marnonel6/advanced_mechatronics/assets/60977336/c90e9553-1e37-4672-98e8-477a7e81fbde)
