@@ -8,12 +8,12 @@
 - [(hw7) `I2C` communication with a IMU - MPU6050](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw7)
 - [(hw8) `I2C` communication with an OLED display and an IMU MPU6050](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw8)
 - [(hw9) `Digital signal processing` on heartbeat data - Low and High-pass filters](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw9)
-- [(hw10) Neopixel](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw10)
-- [(hw11) RPi Pico W](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw11)
-- [(hw12) DiffDrive CAD (OnShape)](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw12)
-- [(hw14) DC Motor control](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw14)
-- [(hw15) Line detection CV - RPi Pico](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw15)
-- [(hw16) Line Follower - Embedded systems, CV, PIC32](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw16)
+- [(hw10) `Neopixel`](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw10)
+- [(hw11) `RPi` Pico W](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw11)
+- [(hw12) DiffDrive `CAD` (OnShape)](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw12)
+- [(hw14) DC `Motor control`](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw14)
+- [(hw15) Line detection `CV` - RPi Pico](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw15)
+- [(hw16) Line Follower - `Embedded systems`, CV, `PIC32`](https://github.com/Marnonel6/advanced_mechatronics/tree/main/hw16)
 
 The following software is necessary:
 - [MPLAB X IDE (v6.05)](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)
