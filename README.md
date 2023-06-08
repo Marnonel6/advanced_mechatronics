@@ -28,3 +28,10 @@ The PIC32 was preprogrammed with a bootloader (from ME333). We will use a progra
 https://github.com/Marnonel6/advanced_mechatronics/assets/60977336/0a9354a2-5b61-4926-b785-c4b6b43be233
 
 ![IMG_6564](https://github.com/Marnonel6/advanced_mechatronics/assets/60977336/1fcd6fcf-64f8-4fc5-92d8-3e8639172bbd)
+
+
+# Circuit schematic and photo
+
+![full_working_circuit](https://user-images.githubusercontent.com/60977336/229938856-97cbb602-3ced-4bfe-8a8e-54fa803d214e.JPEG)
+
+![Schematic_Mechatronics](https://user-images.githubusercontent.com/60977336/229938869-3487eb62-1454-4c9c-b0fc-f4483e748246.png)
