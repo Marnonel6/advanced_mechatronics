@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c nu32dip.c utilities.c uart2.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c nu32dip.c utilities.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/nu32dip.o ${OBJECTDIR}/utilities.o ${OBJECTDIR}/uart2.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/nu32dip.o.d ${OBJECTDIR}/utilities.o.d ${OBJECTDIR}/uart2.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/nu32dip.o ${OBJECTDIR}/utilities.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/nu32dip.o.d ${OBJECTDIR}/utilities.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/nu32dip.o ${OBJECTDIR}/utilities.o ${OBJECTDIR}/uart2.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/nu32dip.o ${OBJECTDIR}/utilities.o
 
 # Source Files
-SOURCEFILES=main.c nu32dip.c utilities.c uart2.c
+SOURCEFILES=main.c nu32dip.c utilities.c
 
 
 
@@ -145,12 +145,6 @@ ${OBJECTDIR}/utilities.o: utilities.c  .generated_files/flags/default/3b0159e489
 	@${RM} ${OBJECTDIR}/utilities.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -O1 -fno-common -MP -MMD -MF "${OBJECTDIR}/utilities.o.d" -o ${OBJECTDIR}/utilities.o utilities.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/uart2.o: uart2.c  .generated_files/flags/default/daca4074bcc308dc447451cf5129de00caea0c58 .generated_files/flags/default/49218653c40cfc712883bb5edc9c6f074fd60656
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/uart2.o.d 
-	@${RM} ${OBJECTDIR}/uart2.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -O1 -fno-common -MP -MMD -MF "${OBJECTDIR}/uart2.o.d" -o ${OBJECTDIR}/uart2.o uart2.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
-	
 else
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/fe0d680b0a6d3e1577383bb12c84bd94c058f15f .generated_files/flags/default/49218653c40cfc712883bb5edc9c6f074fd60656
 	@${MKDIR} "${OBJECTDIR}" 
@@ -169,12 +163,6 @@ ${OBJECTDIR}/utilities.o: utilities.c  .generated_files/flags/default/a10c13fe26
 	@${RM} ${OBJECTDIR}/utilities.o.d 
 	@${RM} ${OBJECTDIR}/utilities.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -O1 -fno-common -MP -MMD -MF "${OBJECTDIR}/utilities.o.d" -o ${OBJECTDIR}/utilities.o utilities.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
-	
-${OBJECTDIR}/uart2.o: uart2.c  .generated_files/flags/default/e65387ca7e09b960fe36e08548e1b84811bfee48 .generated_files/flags/default/49218653c40cfc712883bb5edc9c6f074fd60656
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/uart2.o.d 
-	@${RM} ${OBJECTDIR}/uart2.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -O1 -fno-common -MP -MMD -MF "${OBJECTDIR}/uart2.o.d" -o ${OBJECTDIR}/uart2.o uart2.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
 endif
 

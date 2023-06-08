@@ -14,14 +14,12 @@
 
 // Motor direction pins
 #define MOTOR_1_DIRECTION LATBbits.LATB14
-#define MOTOR_2_DIRECTION LATBbits.LATB12
 
 // Motor PWM / Speed variables
 #define MOTOR_1_SPEED OC1RS
-#define MOTOR_2_SPEED OC4RS
 
 // Timer 3 Period
-#define PR3_PERIOD 2400
+#define PR3_PERIOD 3750
 
 // public function prototypes in the utilities h file
 void setup_motor_timers_pins();
