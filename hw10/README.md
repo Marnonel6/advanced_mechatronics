@@ -1,4 +1,4 @@
 # Neopixel
 
-https://github.com/Marnonel6/advanced_mechatronics/assets/60977336/b20ae6c8-e0e5-4cf5-9013-d517b90f842e
+https://github.com/Marnonel6/advanced_mechatronics/assets/60977336/411654c6-d6cd-4e38-977a-4ac68b5806d0
 
